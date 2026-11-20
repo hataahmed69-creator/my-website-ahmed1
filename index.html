@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1020" />
+    <meta
+      name="description"
+      content="NEXUS — convert decimal, binary, octal and hexadecimal integers exactly, and see the steps."
+    />
+    <title>NEXUS — Number System Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="NEXUS home">NEXUS<span>.</span></a>
+      <nav class="navigation" aria-label="Main navigation">
+        <a href="#method">Method</a>
+        <a href="#history">History</a>
+        <a class="nav-cta" href="#converter">Convert <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <p class="eyebrow"><span class="status-dot"></span> Number systems, made legible</p>
+        <h1 id="hero-title">One number,<br />four <span>languages.</span></h1>
+        <p class="hero-copy">
+          Convert between decimal, binary, octal and hexadecimal, and see exactly how every
+          digit is derived.
+        </p>
+        <a class="button" href="#converter">Start converting <span aria-hidden="true">→</span></a>
+        <div class="hero-orbit orbit-one" aria-hidden="true">
+          <span class="orbit-node" style="top: 14%; left: 86%"><i></i>16</span>
+          <span class="orbit-node" style="top: 88%; left: 24%"><i></i>10</span>
+        </div>
+        <div class="hero-orbit orbit-two" aria-hidden="true">
+          <span class="orbit-node" style="top: 8%; left: 30%"><i></i>8</span>
+          <span class="orbit-node" style="top: 80%; left: 90%"><i></i>2</span>
+        </div>
+      </section>
+
+      <section class="block" id="converter" aria-labelledby="converter-title">
+        <p class="eyebrow">Enter a value</p>
+        <h2 id="converter-title">Start with any <span>integer.</span></h2>
+        <p class="section-copy">
+          Choose the base you are typing in, enter a whole number, positive or negative, then
+          convert.
+        </p>
+
+        <form class="converter" id="converter-form" novalidate>
+          <div class="tabs" role="radiogroup" aria-label="Input base" id="base-tabs">
+            <button type="button" class="tab" role="radio" aria-checked="true" data-base="10">Decimal<small>Base 10</small></button>
+            <button type="button" class="tab" role="radio" aria-checked="false" tabindex="-1" data-base="2">Binary<small>Base 2</small></button>
+            <button type="button" class="tab" role="radio" aria-checked="false" tabindex="-1" data-base="8">Octal<small>Base 8</small></button>
+            <button type="button" class="tab" role="radio" aria-checked="false" tabindex="-1" data-base="16">Hexadecimal<small>Base 16</small></button>
+          </div>
+
+          <div class="field">
+            <span class="prefix" id="prefix" aria-hidden="true" hidden></span>
+            <label class="sr-only" for="value">Number to convert</label>
+            <input
+              id="value"
+              type="text"
+              inputmode="text"
+              autocomplete="off"
+              autocapitalize="characters"
+              spellcheck="false"
+              placeholder="255"
+              aria-describedby="hint"
+            />
+          </div>
+          <p class="hint" id="hint">Digits 0–9</p>
+
+          <div class="actions">
+            <button class="button" type="submit">Convert <span aria-hidden="true">→</span></button>
+            <button class="link-btn" type="button" id="clear">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="block" id="results" aria-labelledby="results-title">
+        <p class="eyebrow">Result</p>
+        <h2 id="results-title">The same value, <span>four ways.</span></h2>
+        <div class="results" id="result-grid">
+          <article class="panel" data-base="10" style="--i: 0">
+            <div class="panel-head"><span class="tag" hidden>Input</span><button type="button" class="copy" disabled>Copy</button></div>
+            <h3>Decimal</h3>
+            <p class="desc">Base 10 · digits 0–9</p>
+            <p class="value">—</p>
+          </article>
+          <article class="panel" data-base="2" style="--i: 1">
+            <div class="panel-head"><span class="tag" hidden>Input</span><button type="button" class="copy" disabled>Copy</button></div>
+            <h3>Binary</h3>
+            <p class="desc">Base 2 · digits 0 and 1</p>
+            <p class="value">—</p>
+          </article>
+          <article class="panel" data-base="8" style="--i: 2">
+            <div class="panel-head"><span class="tag" hidden>Input</span><button type="button" class="copy" disabled>Copy</button></div>
+            <h3>Octal</h3>
+            <p class="desc">Base 8 · digits 0–7</p>
+            <p class="value">—</p>
+          </article>
+          <article class="panel" data-base="16" style="--i: 3">
+            <div class="panel-head"><span class="tag" hidden>Input</span><button type="button" class="copy" disabled>Copy</button></div>
+            <h3>Hexadecimal</h3>
+            <p class="desc">Base 16 · digits 0–9, A–F</p>
+            <p class="value">—</p>
+          </article>
+        </div>
+        <p class="note">Negative numbers keep their minus sign (sign-magnitude), not two’s complement.</p>
+        <p class="sr-only" role="status" id="status"></p>
+      </section>
+
+      <section class="block" id="method" aria-labelledby="method-title">
+        <div class="method">
+          <div class="method-intro">
+            <p class="eyebrow">The method</p>
+            <h2 id="method-title">How it got <span>there.</span></h2>
+            <p class="section-copy">Pick a result to see the arithmetic behind it, one step at a time.</p>
+          </div>
+          <div class="method-body">
+            <div class="tabs" role="radiogroup" aria-label="Explain conversion to" id="targets" hidden></div>
+            <p class="section-copy" id="method-empty">Convert a number and the steps appear here.</p>
+            <ol class="steps" id="steps"></ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="history" aria-labelledby="history-title">
+        <div class="head-row">
+          <div>
+            <p class="eyebrow">History</p>
+            <h2 id="history-title">Recent <span>conversions.</span></h2>
+          </div>
+          <button class="link-btn" type="button" id="clear-history" disabled>Clear history</button>
+        </div>
+        <ul class="history" id="history-list"></ul>
+        <p class="section-copy" id="history-empty">Nothing here yet. Your conversions are kept in this browser only.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand" href="#home">NEXUS<span>.</span></a>
+      <p>Numbers, explained.</p>
+      <p class="copyright">© <span id="year"></span> NEXUS</p>
+    </footer>
+  </body>
+</html>
