@@ -1,16 +1,33 @@
-# NEXUS Number System Converter
+# NEXUS — Number System Converter
 
-A responsive, browser based tool for converting whole numbers between decimal, binary, octal, and hexadecimal. It also explains the conversion steps and keeps a short history in the current browser.
-
-## Run it
-
-Open `index.html` in a modern browser. No build step or package installation is needed.
+NEXUS is a browser-based tool for converting signed whole numbers between decimal, binary, octal, and hexadecimal. It also explains how each result is derived.
 
 ## Features
 
-- Exact conversion with JavaScript `BigInt`, including large integers.
-- Conversion explanations for each supported base.
-- Copyable results and recent conversions stored locally in the browser.
-- Responsive layout with accessible keyboard controls.
+- Exact integer conversion with JavaScript `BigInt`, including inputs up to 2,000 digits.
+- Step-by-step explanations for each supported conversion.
+- Input examples, copyable results, and keyboard-accessible base selectors.
+- Recent conversions saved in the current browser with `localStorage`.
+- Responsive layout with reduced-motion support.
 
-The page loads its display fonts from Google Fonts; system sans-serif fonts are used as fallbacks.
+## Run locally
+
+Open `index.html` in a modern browser. There is no build step or package installation.
+
+The page loads its display fonts from Google Fonts and falls back to system sans-serif fonts.
+
+## Project structure
+
+```text
+.
+├── assets/       # Images and other static assets
+├── index.html    # Page structure and content
+├── script.js     # Conversion logic and interactions
+├── style.css     # Layout, visual styles, and responsive rules
+├── .gitignore
+└── README.md
+```
+
+## Technology
+
+Semantic HTML, CSS, and vanilla JavaScript. The converter uses `BigInt` for exact integer arithmetic.
