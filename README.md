@@ -31,3 +31,7 @@ The page loads its display fonts from Google Fonts and falls back to system sans
 ## Technology
 
 Semantic HTML, CSS, and vanilla JavaScript. The converter uses `BigInt` for exact integer arithmetic.
+
+## Related project
+
+- [HUE — Coin Toss Simulation](https://github.com/hataahmed69-creator/my-website-ahmed)
